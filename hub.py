@@ -1,23 +1,22 @@
-import sys
+import argparse
 
 
-print()
-file = ""
-use_tt = False
-use_lsa = False
-f_measure = 0
-for i in sys.argv:
-    if str(i).startswith("-file"):
-        file = str(i).split("=")[1]
+def create_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--fileName')
+    parser.add_argument('-tt', '--textTiling', action='store_const', const=True, default=False)
+    parser.add_argument('-lsatt', '--LSA_TT', action='store_const', const=True, default=False)
 
-    if str(i).startswith("-lsa+tt"):
-        use_lsa = True
-
-    if str(i).startswith("-tt"):
-        use_tt = True
+    return parser
 
 
-print(file)
-print(use_lsa)
-print(use_tt)
+if __name__ == '__main__':
+    parser = create_parser()
+    namespace = parser.parse_args()
+
+    # print (namespace)
+
+    print(namespace.fileName)
+    print(namespace.textTiling)
+    print(namespace.LSA_TT)
 
